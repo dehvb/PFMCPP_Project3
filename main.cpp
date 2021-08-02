@@ -66,17 +66,17 @@ Part1 will be broken up into 5 separate steps
 */
 
 /*
-Thing 10)
+Thing 10) Kitchen
 5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
+    1) Dishwasher
+    2) Oven
+    3) Stove
+    4) Microwave
+    5) Fridge
 3 things it can do:
-    1)
-    2)
-    3)
+    1) cook a meal
+    2) cool groceries
+    3) clean dishes
  */
 
 
