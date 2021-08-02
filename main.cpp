@@ -77,78 +77,6 @@ Part1 will be broken up into 5 separate steps
             height in cm (int)
 */
 
-/*
-Thing 5)
-5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
-3 things it can do:
-    1)
-    2)
-    3)
- */
-
-/*
-Thing 6)
-5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
-3 things it can do:
-    1)
-    2)
-    3)
- */
-
-/*
-Thing 7)
-5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
-3 things it can do:
-    1)
-    2)
-    3)
- */
-
-/*
-Thing 8)
-5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
-3 things it can do:
-    1)
-    2)
-    3)
- */
-
-/*
-Thing 9)
-5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
-3 things it can do:
-    1)
-    2)
-    3)
- */
-
-
-
 
 
 /*
@@ -207,6 +135,75 @@ Thing 4) computer
     3) connect to the internet
  */
 
+/*
+Thing 5) Dishwasher
+5 properties:
+    1) holding capacity for plates (int)
+    2) holding capacity for cups and glasses (int)
+    3) holding capacity for cutlery (int)
+    4) time per run in min (int)
+    5) water consumption per run in l (double)
+3 things it can do:
+    1) clean dishes
+    2) dry dishes
+    3) self-clean
+ */
+
+/*
+Thing 6) Oven
+5 properties:
+    1) number of baking sheets (int)
+    2) highest possible temperature in degree celsius (double)
+    3) current temperature in degree celsius (double)
+    4) number of programs (int)
+    5) current program (std::string)
+3 things it can do:
+    1) bake a cake
+    2) bake a pizza
+    3) make a roast
+ */
+
+/*
+Thing 7) Stove
+5 properties:
+    1) type of stove (std::string)
+    2) number of hotplates (int)
+    3) diameter of largest hotplate in cm (double)
+    4) diameter of smallest hotplate in cm (double)
+    5) number of hotplates in use (int)
+3 things it can do:
+    1) boil water
+    2) fry steaks
+    3) make soup
+ */
+
+/*
+Thing 8) Microwave
+5 properties:
+    1) number of programs (int)
+    2) highest possible wattage (int)
+    3) lowest possible wattage (int)
+    4) height (inside) in cm (double)
+    5) diameter of plate in cm (double)
+3 things it can do:
+    1) heat lunch
+    2) melt butter
+    3) make popcorn
+ */
+
+/*
+Thing 9) fridge
+5 properties:
+    1) number of trays (int)
+    2) total volume (double)
+    3) lowest possible temperature in degree celsius (double)
+    4) current temperature in degree celsius (double)
+    5) current (space) utilization in percent (double)
+3 things it can do:
+    1) keep things cold
+    2) chill drinks
+    3) keep perishables fresh
+ */
 
 /*
 Thing 10) Kitchen
