@@ -58,11 +58,11 @@ Thing: Car Wash
 /*
 Thing 1) drum set
 5 properties:
-    1) number of toms
-    2) number of crash cymbals
-    3) number of effect cymbals
-    4) age of drum heads
-    5) number of bass drum pedals
+    1) number of toms (int)
+    2) number of crash cymbals (int)
+    3) number of effect cymbals (int)
+    4) age of drum heads (float)
+    5) number of bass drum pedals (int)
 3 things it can do:
     1) make loud sounds
     2) define the rhythm
@@ -72,11 +72,11 @@ Thing 1) drum set
 /*
 Thing 2) coffee machine
 5 properties:
-    1) water level
-    2) type of coffee beans
-    3) level of coffee beans
-    4) number of cups per run
-    5) time since last cleaning
+    1) water level (float)
+    2) type of coffee beans (std::string)
+    3) level of coffee beans (float)
+    4) number of cups per run (int)
+    5) time since last cleaning (float)
 3 things it can do:
     1) make coffee
     2) grind beans
@@ -86,11 +86,11 @@ Thing 2) coffee machine
 /*
 Thing 3) apple tree
 5 properties:
-    1) height
-    2) age
-    3) number of branches
-    4) number of apples
-    5) leaflessness
+    1) height (float)
+    2) age (float)
+    3) number of branches (double)
+    4) number of apples (double)
+    5) leaflessness (double)
 3 things it can do:
     1) grow apples
     2) provide shade
@@ -100,11 +100,11 @@ Thing 3) apple tree
 /*
 Thing 4) computer
 5 properties:
-    1) amount of RAM
-    2) amount of SSD storage
-    3) clockspeed of CPU
-    4) number of case fans
-    5) number of USB ports
+    1) amount of RAM (int)
+    2) amount of SSD storage (int)
+    3) clockspeed of CPU (float)
+    4) number of case fans (int)
+    5) number of USB ports (int)
 3 things it can do:
     1) store files
     2) run programs
