@@ -56,59 +56,59 @@ Thing: Car Wash
  */
 
 /*
-Thing 1)
+Thing 1) drum set
 5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
+    1) number of toms
+    2) number of crash cymbals
+    3) number of effect cymbals
+    4) age of drum heads
+    5) number of bass drum pedals
 3 things it can do:
-    1)
-    2)
-    3)
+    1) make loud sounds
+    2) define the rhythm
+    3) overpower other instruments
  */
 
 /*
-Thing 2)
+Thing 2) coffee machine
 5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
+    1) water level
+    2) type of coffee beans
+    3) level of coffee beans
+    4) number of cups per run
+    5) time since last cleaning
 3 things it can do:
-    1)
-    2)
-    3)
+    1) make coffee
+    2) grind beans
+    3) self-clean
  */
 
 /*
-Thing 3)
+Thing 3) apple tree
 5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
+    1) height
+    2) age
+    3) number of branches
+    4) number of apples
+    5) leaflessness
 3 things it can do:
-    1)
-    2)
-    3)
+    1) grow apples
+    2) provide shade
+    3) drop apples
  */
 
 /*
-Thing 4)
+Thing 4) computer
 5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
+    1) amount of RAM
+    2) amount of SSD storage
+    3) clockspeed of CPU
+    4) number of case fans
+    5) number of USB ports
 3 things it can do:
-    1)
-    2)
-    3)
+    1) store files
+    2) run programs
+    3) connect to the internet
  */
 
 
