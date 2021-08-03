@@ -150,6 +150,26 @@ Thing 1) drum set
     3) overpower other instruments
  */
 
+struct DrumSet
+{
+    //number of toms (int)
+    int numToms = 3;
+    //number of crash cymbals (int)
+    int numCrashs = 2;
+    //number of effect cymbals (int)
+    int numFX = 1;
+    //age of drum heads (float)
+    float ageHeads = 0.74f;
+    //number of bass drum pedals (int)
+    int numBdPedals = 2;
+    //make loud sounds
+    void makeLoudSounds(float velocity);
+    //define the rhythm
+    void defineTheRhythm(int bpm);
+    //overpower other instruments
+    void overpowerOtherInstruments(bool hardHitter);
+};
+
 /*
 Thing 2) coffee machine
 5 properties:
@@ -163,6 +183,38 @@ Thing 2) coffee machine
     2) grind beans
     3) self-clean
  */
+struct CoffeeMachine
+{
+    //water level (float)
+    float waterLevel = 70.13f;
+    //type of coffee beans (std::string)
+    std::string coffeeBeans = "Arabica";
+    //level of coffee beans (float)
+    float beansLevel = 30.64f;
+    //number of cups per run (int)
+    int cupsPerRun = 2;
+    //time since last cleaning (float)
+    float timeSinceCleaning = 33.333f;
+
+    struct Coffee
+    {
+        bool isEspresso = false;
+        std::string servingSize = "double";
+        std::string intensity = "strong";        
+        int waterPerServing = 210;
+        int temperature = 85;
+        void requireBeans(double weightPerServing = 15);  
+        void makeAwake(float caffeineConcentration = 7.23458796f);
+        void burnTongue(std::string smell = "good", bool tooHot = true);
+    };
+
+    //make coffee
+    void makeCoffee(Coffee coffee);
+    //grind beans
+    void grindBeans(Coffee coffee);
+    //self-clean
+    void selfClean(int numberOfCupsServed);
+};
 
 /*
 Thing 3) apple tree
@@ -177,7 +229,25 @@ Thing 3) apple tree
     2) provide shade
     3) drop apples
  */
-
+struct AppleTree
+{
+    //height (float)
+    float height = 2.3f;
+    //age (float)
+    float age = 23.65f;
+    //number of branches (double)
+    double numBranches = 15.5;
+    //number of apples (double)
+    double numApples = 55.8;
+    //leaflessness (double)
+    double leaflessness = 95.5;
+    //grow apples
+    void growApples(int soilQuality = 7, bool sunny = true);
+    //provide shade
+    void provideShade(double leaflessness = 95.5, bool sunny = true);
+    //drop apples
+    void dropApples(int appleRipeness = 75);
+};
 /*
 Thing 4) computer
 5 properties:
@@ -191,7 +261,25 @@ Thing 4) computer
     2) run programs
     3) connect to the internet
  */
-
+struct Computer
+{
+    //amount of RAM (int)
+    int amountRAM = 16;
+    //amount of SSD storage (int)
+    int amountSsdStorage = 1000;
+    //clockspeed of CPU (float)
+    float clockspeedCPU = 3995.7f;
+    //number of case fans (int)
+    int numCaseFans = 4;
+    //number of USB ports (int)
+    int numUsbPorts = 8;
+    //store files
+    void storeFiles(float fileSize = 3456543);
+    //run programs
+    void runPrograms(bool asAdmin = false);
+    //connect to the internet
+    void connectToInternet(bool wifiEnabled = false);
+};
 /*
 Thing 5) Dishwasher
 5 properties:
@@ -205,7 +293,38 @@ Thing 5) Dishwasher
     2) dry dishes
     3) self-clean
  */
+struct Dishwasher
+{
+    //holding capacity for plates (int)
+    int capacityPlates = 15;
+    //holding capacity for cups and glasses (int)
+    int capacityCupsGlasses = 18;
+    //holding capacity for cutlery (int)
+    int capacityCutlery = 30;
+    //time per run in min (int)
+    int timePerRun = 135;
+    //water consumption per run in l (double)
+    double waterConsumption = 30.5;
 
+    struct Dishes
+    {
+        float oilyness = 25.76f;
+        int soupBowls = 4;
+        int regularPlates = 12;
+        int cups = 8;
+        int glasses = 5;
+        void clogDrain(std::string residues = "too much");
+        void tarnish(bool isSensitive = false);
+        void shatter(bool isPiledBadly = false);
+    };
+
+    //clean dishes
+    void cleanDishes(Dishes dishes);
+    //dry dishes
+    void dryDishes(bool shouldDryDishes = true, int temp = 55);
+    //self-clean
+    void selfClean(int afterRun = 45);
+};
 /*
 Thing 6) Oven
 5 properties:
@@ -219,7 +338,25 @@ Thing 6) Oven
     2) bake a pizza
     3) make a roast
  */
-
+struct Oven
+{
+    //number of baking sheets (int)
+    int numberBakingSheets = 3;
+    //highest possible temperature in degree celsius (double)
+    double highestTemp = 300;
+    //current temperature in degree celsius (double)
+    double currentTemp = 220;
+    //number of programs (int)
+    int numberPrograms = 5;
+    //current program name (std::string)
+    std::string currentProgram = "top heat";
+    //bake a cake
+    void bakeCake(std::string typeOfCake = "apple", int preHeat = 180);
+    //bake a pizza
+    void bakePizza(std::string typeOfPizza = "margherita", int preHeat = 220);
+    //make a roast
+    void makeRoast(std::string typeOfRoast = "beef", int setTemp = 230);
+};
 /*
 Thing 7) Stove
 5 properties:
@@ -233,7 +370,25 @@ Thing 7) Stove
     2) fry steaks
     3) make soup
  */
-
+struct Stove
+{
+    //type of stove (std::string)
+    std::string typeStove = "induction";
+    //number of hotplates (int)
+    int numberHotplates = 4;
+    //diameter of largest hotplate in cm (double)
+    double largestDiam = 28.5;
+    //diameter of smallest hotplate in cm (double)
+    double smallestDiam = 14.5;
+    //number of hotplates in use (int)
+    int hotplatesInUse = 1;
+    //boil water
+    void boilWater(int setLevel = 9);
+    //fry steaks
+    void frySteaks(int setLevel = 7);
+    //make soup
+    void makeSoup(int setLevel = 5);
+};
 /*
 Thing 8) Microwave
 5 properties:
@@ -247,7 +402,25 @@ Thing 8) Microwave
     2) melt butter
     3) make popcorn
  */
-
+struct Microwave
+{
+    //number of programs (int)
+    int numberPrograms = 3;
+    //highest possible wattage (int)
+    int highestWattage = 900;
+    //lowest possible wattage (int)
+    int lowestWattage = 400;
+    //height (inside) in cm (double)
+    double height = 20.5;
+    //diameter of plate in cm (double)
+    double diameter = 18.5;
+    //heat lunch
+    void heatLunch(float setTimer = 2.57f);
+    //melt butter
+    void meltButter(float setTimer = 0.875f);
+    //make popcorn
+    void makePopcorn(float setTimer = 1.78564f);
+};
 /*
 Thing 9) fridge
 5 properties:
@@ -261,7 +434,25 @@ Thing 9) fridge
     2) chill drinks
     3) keep perishables fresh
  */
-
+struct Fridge
+{
+    //number of trays (int)
+    int numTrays = 5;
+    //total volume (double)
+    double totalVolume = 150.6;
+    //lowest possible temperature in degree celsius (double)
+    double lowestTemp = 0.1;
+    //current temperature in degree celsius (double)
+    double currentTemp = 0.5;
+    //current (space) utilization in percent (double)
+    double currentUtilization = 35.0;
+    //keep things cold
+    void keepThingsCold(bool activatedSteadyModule = true);
+    //chill drinks
+    void chillDrinks(bool activateQuickCool = true);
+    //keep perishables fresh
+    void keepPerishablesFresh(bool regulateHumidity = true);
+};
 /*
 Thing 10) Kitchen
 5 properties:
@@ -275,7 +466,25 @@ Thing 10) Kitchen
     2) cool groceries
     3) clean dishes
  */
-
+struct Kitchen
+{
+    //Dishwasher
+    Dishwasher dishwasher;
+    //Oven
+    Oven oven;
+    //Stove
+    Stove stove;
+    //Microwave
+    Microwave microwave;
+    //Fridge
+    Fridge fridge;
+    //cook a meal
+    void cookMeal(int numberPotsNeeded = 3, int numberPansNeeded = 1);
+    //cool groceries
+    void coolGroceries(bool tooHot = false);
+    //clean dishes
+    void cleanDishes(bool dishwasherTabPresent = true);
+};
 /*
  MAKE SURE YOU ARE NOT ON THE MASTER BRANCH
 
