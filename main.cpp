@@ -107,10 +107,52 @@ struct CarWash
     you should be able to deduce the return type of those functions based on their usage in Person::run()
     You'll need to insert the Person struct from the video in the space below.
  */
+struct Person
+{
+    int age;
+    int height;
+    float hairLength;
+    float GPA;
+    unsigned int SATScore;
+    double distanceTraveled;
+    struct Foot
 
+    {
+        void stepForward();
+        double stepSize(double length, double hurry);
+    };
+    Foot leftFoot;
+    Foot rightFoot;
 
+    void run(int howFast, bool startWithLeftFoot);
+};
 
+void Person::Foot::stepForward()
+{
 
+}
+
+double Person::Foot::stepSize(double length = 0.9, double hurry = 1.0)
+{
+    double currentStepSize = length * hurry;
+    return currentStepSize;
+}
+
+void Person::run(int howFast, bool startWithLeftFoot)
+{
+    if(startWithLeftFoot == true)
+    {
+        leftFoot.stepForward();
+        rightFoot.stepForward();
+    }
+    else
+    {
+        rightFoot.stepForward();
+        leftFoot.stepForward();
+    }
+    distanceTraveled += leftFoot.stepSize() + rightFoot.stepSize();
+    howFast = 1;
+}
 
  /*
  2) provide implementations for the member functions you declared in your 10 user-defined types from the previous video outside of your UDT definitions.
@@ -125,64 +167,55 @@ struct CarWash
  */
 
 
-/*
-Thing 1) drum set
-5 properties:
-    1) number of toms (int)
-    2) number of crash cymbals (int)
-    3) number of effect cymbals (int)
-    4) age of drum heads (float)
-    5) number of bass drum pedals (int)
-3 things it can do:
-    1) make loud sounds
-    2) define the rhythm
-    3) overpower other instruments
- */
-
 struct DrumSet
 {
-    //number of toms (int)
     int numToms = 3;
-    //number of crash cymbals (int)
     int numCrashs = 2;
-    //number of effect cymbals (int)
     int numFX = 1;
-    //age of drum heads (float)
     float ageHeads = 0.74f;
-    //number of bass drum pedals (int)
     int numBdPedals = 2;
-    //make loud sounds
     void makeLoudSounds(float velocity);
-    //define the rhythm
     void defineTheRhythm(int bpm);
-    //overpower other instruments
     void overpowerOtherInstruments(bool hardHitter);
 };
+void DrumSet::makeLoudSounds(float velocity)
+{
+    if(velocity > 95.8f)
+    {
+        std::cout << "LOUD";
+    }
+    else
+    {
+        std::cout << "quiet";
+    }
+}
+void DrumSet::defineTheRhythm(int bpm)
+{
+    std::string beat;
+    if(bpm > 220)
+    {
+        beat = "blastbeat";
+    }
+    else
+    {
+        beat = "four on the floor";
+    }
+}
+void DrumSet::overpowerOtherInstruments(bool hardHitter)
+{
+    if(hardHitter)
+    {
+        std::cout << "Turn your amp up, dude";
+    }
+}
 
-/*
-Thing 2) coffee machine
-5 properties:
-    1) water level (float)
-    2) type of coffee beans (std::string)
-    3) level of coffee beans (float)
-    4) number of cups per run (int)
-    5) time since last cleaning (float)
-3 things it can do:
-    1) make coffee
-    2) grind beans
-    3) self-clean
- */
+
 struct CoffeeMachine
 {
-    //water level (float)
     float waterLevel = 70.13f;
-    //type of coffee beans (std::string)
     std::string coffeeBeans = "Arabica";
-    //level of coffee beans (float)
     float beansLevel = 30.64f;
-    //number of cups per run (int)
     int cupsPerRun = 2;
-    //time since last cleaning (float)
     float timeSinceCleaning = 33.333f;
 
     struct Coffee
@@ -192,107 +225,174 @@ struct CoffeeMachine
         std::string intensity = "strong";        
         int waterPerServing = 210;
         int temperature = 85;
-        void requireBeans(double weightPerServing = 15);  
+        void requireBeans(int weightPerServing = 15);  
         void makeAwake(float caffeineConcentration = 7.23458796f);
         void burnTongue(std::string smell = "good", bool tooHot = true);
     };
 
-    //make coffee
     void makeCoffee(Coffee coffee);
-    //grind beans
     void grindBeans(Coffee coffee);
-    //self-clean
     void selfClean(int numberOfCupsServed);
 };
+void CoffeeMachine::Coffee::requireBeans(int weightPerServing)
+{
+    if(weightPerServing == 15)
+    {
+        std::cout << "gimme 15g";
+    }
+    else
+    {
+        std::cout << "let's see";
+    }
+}
+void CoffeeMachine::Coffee::makeAwake(float caffeineConcentration)
+{
+    if(caffeineConcentration > 7)
+    {
+        std::cout << "good morning";
+    }
+    else
+    {
+        std::cout << "ughhh";
+    }
+}
+void CoffeeMachine::Coffee::burnTongue(std::string smell, bool tooHot)
+{
+    if(smell == "good")
+    {
+        if(tooHot)
+        {
+            std::cout << "ouch";
+        }
+        else
+        {
+            std::cout << "nice";
+        }
+    }
+    else
+    {
+        std::cout << "hmpf";
+    }
+}
+void CoffeeMachine::makeCoffee(CoffeeMachine::Coffee coffee)
+{
+    if(coffee.isEspresso == false)
+    {
+        std::cout << "making coffee";
+    }
+}
+void CoffeeMachine::grindBeans(CoffeeMachine::Coffee coffee)
+{
+    if(coffee.servingSize == "double")
+    {
+        std::cout << "grinding a lot of beans";
+    }
+}
+void CoffeeMachine::selfClean(int numberOfCupsServed)
+{
+    if(numberOfCupsServed < 25)
+    {
+        std::cout << "not yet";
+    }
+    else
+    {
+        std::cout << "gotta clean";
+    }
+}
 
-/*
-Thing 3) apple tree
-5 properties:
-    1) height (float)
-    2) age (float)
-    3) number of branches (double)
-    4) number of apples (double)
-    5) leaflessness (double)
-3 things it can do:
-    1) grow apples
-    2) provide shade
-    3) drop apples
- */
+
 struct AppleTree
 {
-    //height (float)
     float height = 2.3f;
-    //age (float)
     float age = 23.65f;
-    //number of branches (double)
     double numBranches = 15.5;
-    //number of apples (double)
     double numApples = 55.8;
-    //leaflessness (double)
     double leaflessness = 95.5;
-    //grow apples
     void growApples(int soilQuality = 7, bool sunny = true);
-    //provide shade
     void provideShade(double leaflessness = 95.5, bool sunny = true);
-    //drop apples
     void dropApples(int appleRipeness = 75);
 };
-/*
-Thing 4) computer
-5 properties:
-    1) amount of RAM (int)
-    2) amount of SSD storage (int)
-    3) clockspeed of CPU (float)
-    4) number of case fans (int)
-    5) number of USB ports (int)
-3 things it can do:
-    1) store files
-    2) run programs
-    3) connect to the internet
- */
+void AppleTree::growApples(int soilQuality, bool sunny)
+{
+    if(sunny)
+    {
+        if(soilQuality > 5)
+            {
+                std::cout << "growing a lot";
+            }
+        else
+            {
+                std::cout << "growing slowly";
+            }
+    }
+}
+void AppleTree::provideShade(double leaflessnes, bool sunny)
+{
+    if(sunny)
+    {
+        if(leaflessnes < 15)
+            {
+                std::cout << "lots of shade";
+            }
+        else
+            {
+                std::cout << "little shade";
+            }
+    }
+}
+void AppleTree::dropApples(int appleRipeness)
+{
+    if(appleRipeness > 80)
+    {
+        std::cout << "drop it like it'S hot";
+    }
+}
+
 struct Computer
 {
-    //amount of RAM (int)
     int amountRAM = 16;
-    //amount of SSD storage (int)
     int amountSsdStorage = 1000;
-    //clockspeed of CPU (float)
     float clockspeedCPU = 3995.7f;
-    //number of case fans (int)
     int numCaseFans = 4;
-    //number of USB ports (int)
     int numUsbPorts = 8;
-    //store files
     void storeFiles(float fileSize = 3456543);
-    //run programs
     void runPrograms(bool asAdmin = false);
-    //connect to the internet
     void connectToInternet(bool wifiEnabled = false);
 };
-/*
-Thing 5) Dishwasher
-5 properties:
-    1) holding capacity for plates (int)
-    2) holding capacity for cups and glasses (int)
-    3) holding capacity for cutlery (int)
-    4) time per run in min (int)
-    5) water consumption per run in l (double)
-3 things it can do:
-    1) clean dishes
-    2) dry dishes
-    3) self-clean
- */
+void Computer::storeFiles(float fileSize)
+{
+    std::cout << "File saved with size";
+    std::cout << fileSize;
+}
+void Computer::runPrograms(bool asAdmin)
+{
+    if(asAdmin)
+    {
+        std::cout << "running the program as admin";
+    }
+    else
+    {
+        std::cout << "admin privileges required";
+    }
+}
+void Computer::connectToInternet(bool wifiEnabled)
+{
+    if(wifiEnabled)
+    {
+        std::cout << "wireless connection established";
+    }
+    else
+    {
+        std::cout << "please connect a LAN cable";
+    }
+}
+
 struct Dishwasher
 {
-    //holding capacity for plates (int)
     int capacityPlates = 15;
-    //holding capacity for cups and glasses (int)
     int capacityCupsGlasses = 18;
-    //holding capacity for cutlery (int)
     int capacityCutlery = 30;
-    //time per run in min (int)
     int timePerRun = 135;
-    //water consumption per run in l (double)
     double waterConsumption = 30.5;
 
     struct Dishes
@@ -307,173 +407,193 @@ struct Dishwasher
         void shatter(bool isPiledBadly = false);
     };
 
-    //clean dishes
     void cleanDishes(Dishes dishes);
-    //dry dishes
     void dryDishes(bool shouldDryDishes = true, int temp = 55);
-    //self-clean
     void selfClean(int afterRun = 45);
 };
-/*
-Thing 6) Oven
-5 properties:
-    1) number of baking sheets (int)
-    2) highest possible temperature in degree celsius (double)
-    3) current temperature in degree celsius (double)
-    4) number of programs (int)
-    5) current program name (std::string)
-3 things it can do:
-    1) bake a cake
-    2) bake a pizza
-    3) make a roast
- */
+void Dishwasher::Dishes::clogDrain(std::string residues)
+{
+    if(residues == "too much")
+    {
+        std::cout << "clogged";
+    }
+}
+void Dishwasher::Dishes::tarnish(bool isSensitive)
+{
+    if(isSensitive)
+    {
+        std::cout << "cutlery successfully tarnished";
+    }
+}
+void Dishwasher::Dishes::shatter(bool isPiledBadly)
+{
+    if(isPiledBadly)
+    {
+        std::cout << "let's break some stuff";
+    }
+}
+void Dishwasher::cleanDishes(Dishwasher::Dishes dishes)
+{
+    std::cout << "cleaning dishes...";
+    dishes.oilyness = 0.f;
+}
+void Dishwasher::dryDishes(bool shouldDryDishes, int temp)
+{
+    if(shouldDryDishes)
+    {
+        if(temp < 55)
+            {
+                std::cout << "raising temperature to 55";
+            }
+    }
+}
+void Dishwasher::selfClean(int afterRun)
+{
+    if(afterRun >= 45)
+    {
+        std::cout << "let's clean";
+    }
+    else
+    {
+        std::cout << "not yet";
+    }
+}
+
 struct Oven
 {
-    //number of baking sheets (int)
     int numberBakingSheets = 3;
-    //highest possible temperature in degree celsius (double)
     double highestTemp = 300;
-    //current temperature in degree celsius (double)
     double currentTemp = 220;
-    //number of programs (int)
     int numberPrograms = 5;
-    //current program name (std::string)
     std::string currentProgram = "top heat";
-    //bake a cake
     void bakeCake(std::string typeOfCake = "apple", int preHeat = 180);
-    //bake a pizza
     void bakePizza(std::string typeOfPizza = "margherita", int preHeat = 220);
-    //make a roast
     void makeRoast(std::string typeOfRoast = "beef", int setTemp = 230);
 };
-/*
-Thing 7) Stove
-5 properties:
-    1) type of stove (std::string)
-    2) number of hotplates (int)
-    3) diameter of largest hotplate in cm (double)
-    4) diameter of smallest hotplate in cm (double)
-    5) number of hotplates in use (int)
-3 things it can do:
-    1) boil water
-    2) fry steaks
-    3) make soup
- */
+void Oven::bakeCake(std::string typeOfCake, int preHeat)
+{
+    std::cout << "baking an " << typeOfCake << " pie, preheating to " << preHeat;
+}
+void Oven::bakePizza(std::string typeOfPizza, int preHeat)
+{
+    std::cout << "baking a pizza " << typeOfPizza << ", preheating to " << preHeat;
+}
+void Oven::makeRoast(std::string typeOfRoast, int setTemp)
+{
+    std::cout << "making a " << typeOfRoast << " roast, setting Temperature to " << setTemp;
+}
+
 struct Stove
 {
-    //type of stove (std::string)
     std::string typeStove = "induction";
-    //number of hotplates (int)
     int numberHotplates = 4;
-    //diameter of largest hotplate in cm (double)
     double largestDiam = 28.5;
-    //diameter of smallest hotplate in cm (double)
     double smallestDiam = 14.5;
-    //number of hotplates in use (int)
     int hotplatesInUse = 1;
-    //boil water
     void boilWater(int setLevel = 9);
-    //fry steaks
     void frySteaks(int setLevel = 7);
-    //make soup
     void makeSoup(int setLevel = 5);
 };
-/*
-Thing 8) Microwave
-5 properties:
-    1) number of programs (int)
-    2) highest possible wattage (int)
-    3) lowest possible wattage (int)
-    4) height (inside) in cm (double)
-    5) diameter of plate in cm (double)
-3 things it can do:
-    1) heat lunch
-    2) melt butter
-    3) make popcorn
- */
+void Stove::boilWater(int setLevel)
+{
+    std::cout << "boiling water, setting level to " << setLevel;
+}
+void Stove::frySteaks(int setLevel)
+{
+    std::cout << "frying steaks, setting level to " << setLevel;
+}
+void Stove::makeSoup(int setLevel)
+{
+    std::cout << "making soup, setting level to " << setLevel;
+}
+
 struct Microwave
 {
-    //number of programs (int)
     int numberPrograms = 3;
-    //highest possible wattage (int)
     int highestWattage = 900;
-    //lowest possible wattage (int)
     int lowestWattage = 400;
-    //height (inside) in cm (double)
     double height = 20.5;
-    //diameter of plate in cm (double)
     double diameter = 18.5;
-    //heat lunch
     void heatLunch(float setTimer = 2.57f);
-    //melt butter
     void meltButter(float setTimer = 0.875f);
-    //make popcorn
     void makePopcorn(float setTimer = 1.78564f);
 };
-/*
-Thing 9) fridge
-5 properties:
-    1) number of trays (int)
-    2) total volume (double)
-    3) lowest possible temperature in degree celsius (double)
-    4) current temperature in degree celsius (double)
-    5) current (space) utilization in percent (double)
-3 things it can do:
-    1) keep things cold
-    2) chill drinks
-    3) keep perishables fresh
- */
+void Microwave::heatLunch(float setTimer)
+{
+    std::cout << "heating lunch, setting timer to " << setTimer;
+}
+void Microwave::meltButter(float setTimer)
+{
+    std::cout << "melting butter, setting timer to " << setTimer;
+}
+void Microwave::makePopcorn(float setTimer)
+{
+    std::cout << "making popcorn, setting timer to " << setTimer;
+}
+
 struct Fridge
 {
-    //number of trays (int)
     int numTrays = 5;
-    //total volume (double)
     double totalVolume = 150.6;
-    //lowest possible temperature in degree celsius (double)
     double lowestTemp = 0.1;
-    //current temperature in degree celsius (double)
     double currentTemp = 0.5;
-    //current (space) utilization in percent (double)
     double currentUtilization = 35.0;
-    //keep things cold
     void keepThingsCold(bool activatedSteadyModule = true);
-    //chill drinks
     void chillDrinks(bool activateQuickCool = true);
-    //keep perishables fresh
     void keepPerishablesFresh(bool regulateHumidity = true);
 };
-/*
-Thing 10) Kitchen
-5 properties:
-    1) Dishwasher
-    2) Oven
-    3) Stove
-    4) Microwave
-    5) Fridge
-3 things it can do:
-    1) cook a meal
-    2) cool groceries
-    3) clean dishes
- */
+void Fridge::keepThingsCold(bool activatedSteadyModule)
+{
+    if(activatedSteadyModule)
+    {
+        std::cout << "keeping it cool";
+    }
+}
+void Fridge::chillDrinks(bool activateQuickCool)
+{
+    if(activateQuickCool)
+    {
+        std::cout << "let's get those drinks cool";
+    }
+}
+void Fridge::keepPerishablesFresh(bool regulateHumidity)
+{
+    if(regulateHumidity)
+    {
+        std::cout << "activating humidity controller";
+    }
+}
+
 struct Kitchen
 {
-    //Dishwasher
     Dishwasher dishwasher;
-    //Oven
     Oven oven;
-    //Stove
     Stove stove;
-    //Microwave
     Microwave microwave;
-    //Fridge
     Fridge fridge;
-    //cook a meal
     void cookMeal(int numberPotsNeeded = 3, int numberPansNeeded = 1);
-    //cool groceries
     void coolGroceries(bool tooHot = false);
-    //clean dishes
     void cleanDishes(bool dishwasherTabPresent = true);
 };
+void Kitchen::cookMeal(int numberPotsNeeded, int numberPansNeeded)
+{
+    std::cout << "we need " << numberPotsNeeded << " pot(s) and " << numberPansNeeded << " pan(s)";
+}
+void Kitchen::coolGroceries(bool tooHot)
+{
+    if(tooHot)
+    {
+        std::cout << "let's not put them in the fridge yet";
+    }
+}
+void Kitchen::cleanDishes(bool dishwasherTabPresent)
+{
+    if(dishwasherTabPresent)
+    {
+        std::cout << "start the washing machine";
+    }
+}
+
 /*
  MAKE SURE YOU ARE NOT ON THE MASTER BRANCH
 
