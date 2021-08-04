@@ -119,7 +119,7 @@ struct Person
     struct Foot
     {
         void stepForward();
-        double stepSize(double length, double hurry);
+        double stepSize(double length = 0.9, double hurry = 1.0);
     };
     
     Foot leftFoot;
@@ -133,7 +133,7 @@ void Person::Foot::stepForward()
 
 }
 
-double Person::Foot::stepSize(double length = 0.9, double hurry = 1.0) FIXME default parameter values should be written in the function declaration, not in the function implementation
+double Person::Foot::stepSize(double length, double hurry)
 {
     double currentStepSize = length * hurry;
     return currentStepSize;
@@ -318,13 +318,13 @@ void AppleTree::growApples(int soilQuality, bool sunny)
     if(sunny)
     {
         if(soilQuality > 5)
-            { FIXME indentation
-                std::cout << "growing a lot";
-            }
+        {
+            std::cout << "growing a lot";
+        }
         else
-            {
-                std::cout << "growing slowly";
-            }
+        {
+            std::cout << "growing slowly";
+        }
     }
 }
 void AppleTree::provideShade(double leaflessnes, bool sunny)
@@ -332,13 +332,13 @@ void AppleTree::provideShade(double leaflessnes, bool sunny)
     if(sunny)
     {
         if(leaflessnes < 15)
-            { FIXME indentation
-                std::cout << "lots of shade";
-            }
+        {
+            std::cout << "lots of shade";
+        }
         else
-            {
-                std::cout << "little shade";
-            }
+        {
+            std::cout << "little shade";
+        }
     }
 }
 void AppleTree::dropApples(int appleRipeness)
@@ -443,9 +443,9 @@ void Dishwasher::dryDishes(bool shouldDryDishes, int temp)
     if(shouldDryDishes)
     {
         if(temp < 55)
-            { FIXME indentation
-                std::cout << "raising temperature to 55";
-            }
+        {
+            std::cout << "raising temperature to 55";
+        }
     }
 }
 void Dishwasher::selfClean(int afterRun)
