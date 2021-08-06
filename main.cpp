@@ -149,10 +149,10 @@ CoffeeMachine::CoffeeMachine()
     cupsPerRun = 2;
     timeSinceCleaning = 33.333f;
 }
-/*CoffeeMachine::CoffeeMachine::Coffee()
+CoffeeMachine::CoffeeMachine::Coffee() FIXME: className::nestedClass::nestedClassFunction
 {
 
-}*/
+}
 void CoffeeMachine::Coffee::requireBeans(int weightPerServing)
 {
     if(weightPerServing == 15)
@@ -340,6 +340,8 @@ struct Dishwasher
     void cleanDishes(Dishes dishes);
     void dryDishes(bool shouldDryDishes = true, int temp = 55);
     void selfClean(int afterRun = 45);
+
+    Dishes dishes;
 };
 Dishwasher::Dishwasher()
 {
