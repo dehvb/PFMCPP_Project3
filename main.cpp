@@ -127,11 +127,9 @@ struct CoffeeMachine
     struct Coffee
     {
         Coffee();
-        bool isEspresso = false;
-        std::string servingSize = "double";
-        std::string intensity = "strong";        
-        int waterPerServing = 210;
-        int temperature = 85;
+        bool isEspresso;
+        std::string servingSize, intensity;
+        int waterPerServing, temperature;
         void requireBeans(int weightPerServing = 15);  
         void makeAwake(float caffeineConcentration = 7.23458796f);
         void burnTongue(std::string smell = "good", bool tooHot = true);
@@ -149,9 +147,13 @@ CoffeeMachine::CoffeeMachine()
     cupsPerRun = 2;
     timeSinceCleaning = 33.333f;
 }
-CoffeeMachine::CoffeeMachine::Coffee() FIXME: className::nestedClass::nestedClassFunction
+CoffeeMachine::Coffee::Coffee()
 {
-
+    isEspresso = false;
+    servingSize = "double";
+    intensity = "strong";        
+    waterPerServing = 210;
+    temperature = 85;
 }
 void CoffeeMachine::Coffee::requireBeans(int weightPerServing)
 {
@@ -327,11 +329,8 @@ struct Dishwasher
     struct Dishes
     {
         Dishes();
-        float oilyness = 25.76f;
-        int soupBowls = 4;
-        int regularPlates = 12;
-        int cups = 8;
-        int glasses = 5;
+        float oilyness;
+        int soupBowls, regularPlates, cups, glasses;
         void clogDrain(std::string residues = "too much");
         void tarnish(bool isSensitive = false);
         void shatter(bool isPiledBadly = false);
@@ -350,6 +349,14 @@ Dishwasher::Dishwasher()
     capacityCutlery = 30;
     timePerRun = 135;
     waterConsumption = 30.5;
+}
+Dishwasher::Dishes::Dishes()
+{
+    oilyness = 25.76f;
+    soupBowls = 4;
+    regularPlates = 12;
+    cups = 8;
+    glasses = 5;
 }
 void Dishwasher::Dishes::clogDrain(std::string residues)
 {
@@ -372,7 +379,7 @@ void Dishwasher::Dishes::shatter(bool isPiledBadly)
         std::cout << "let's break some stuff" << std::endl;
     }
 }
-void Dishwasher::cleanDishes(Dishwasher::Dishes dishes)
+void Dishwasher::cleanDishes(Dishwasher::Dishes)
 {
     std::cout << "cleaning dishes..." << std::endl;
     dishes.oilyness = 0.f;
@@ -591,6 +598,9 @@ int main()
     std::cout << "Is cleaning needed? " << std::endl;
     coffeemachine.selfClean(2);
 
+    CoffeeMachine::Coffee coffee;
+    coffee.burnTongue();
+
     AppleTree appletree;
     appletree.dropApples(85);
 
@@ -600,6 +610,10 @@ int main()
 
     Dishwasher dishwasher;
     dishwasher.dryDishes();
+
+    Dishwasher::Dishes dishes;
+    dishes.tarnish(true);
+    dishwasher.cleanDishes(dishes);
 
     Oven oven;
     oven.bakePizza();
