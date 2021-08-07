@@ -329,7 +329,7 @@ struct Dishwasher
     struct Dishes
     {
         Dishes();
-        float oilyness;
+        float oiliness;
         int soupBowls, regularPlates, cups, glasses;
         void clogDrain(std::string residues = "too much");
         void tarnish(bool isSensitive = false);
@@ -352,7 +352,7 @@ Dishwasher::Dishwasher()
 }
 Dishwasher::Dishes::Dishes()
 {
-    oilyness = 25.76f;
+    oiliness = 25.76f;
     soupBowls = 4;
     regularPlates = 12;
     cups = 8;
@@ -381,8 +381,18 @@ void Dishwasher::Dishes::shatter(bool isPiledBadly)
 }
 void Dishwasher::cleanDishes(Dishwasher::Dishes newDishes)
 {
-    std::cout << "cleaning dishes..." << std::endl;
-    newDishes.oilyness = 0.f;
+    if(dishes.oiliness > 0)
+    {
+        std::cout << "dishes are dirty, oiliness: " << dishes.oiliness << std::endl;
+        std::cout << "cleaning dishes..." << std::endl;
+        newDishes.oiliness = 0.f;
+        dishes.oiliness = newDishes.oiliness;
+        std::cout << "dishes cleaned, oiliness: " << dishes.oiliness << std::endl;
+    }
+    else
+    {
+        std::cout << "dishes are not dirty, oiliness: " << dishes.oiliness << std::endl;
+    }
 }
 void Dishwasher::dryDishes(bool shouldDryDishes, int temp)
 {
@@ -611,9 +621,9 @@ int main()
     Dishwasher dishwasher;
     dishwasher.dryDishes();
 
-    Dishwasher::Dishes dishes;
-    dishes.tarnish(true);
-    dishwasher.cleanDishes(dishes);
+    dishwasher.dishes.tarnish(true);
+    dishwasher.cleanDishes(dishwasher.dishes);
+    dishwasher.cleanDishes(dishwasher.dishes);
 
     Oven oven;
     oven.bakePizza();
