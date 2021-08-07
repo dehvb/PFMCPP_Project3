@@ -379,10 +379,10 @@ void Dishwasher::Dishes::shatter(bool isPiledBadly)
         std::cout << "let's break some stuff" << std::endl;
     }
 }
-void Dishwasher::cleanDishes(Dishwasher::Dishes)
+void Dishwasher::cleanDishes(Dishwasher::Dishes newDishes)
 {
     std::cout << "cleaning dishes..." << std::endl;
-    dishes.oilyness = 0.f;
+    newDishes.oilyness = 0.f;
 }
 void Dishwasher::dryDishes(bool shouldDryDishes, int temp)
 {
