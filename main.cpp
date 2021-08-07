@@ -381,12 +381,16 @@ void Dishwasher::Dishes::shatter(bool isPiledBadly)
 }
 void Dishwasher::cleanDishes(Dishwasher::Dishes newDishes)
 {
-    if(dishes.oiliness > 0)
+    if(newDishes.oiliness > 0)
     {
-        std::cout << "dishes are dirty, oiliness: " << dishes.oiliness << std::endl;
+        std::cout << "dishes are dirty, oiliness: " << newDishes.oiliness << std::endl;
         std::cout << "cleaning dishes..." << std::endl;
         newDishes.oiliness = 0.f;
         dishes.oiliness = newDishes.oiliness;
+        dishes.soupBowls = newDishes.soupBowls;
+        dishes.regularPlates = newDishes.regularPlates;
+        dishes.cups = newDishes.cups;
+        dishes.glasses = newDishes.glasses;
         std::cout << "dishes cleaned, oiliness: " << dishes.oiliness << std::endl;
     }
     else
