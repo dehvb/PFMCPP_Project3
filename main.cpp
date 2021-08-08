@@ -42,20 +42,19 @@ int main()
 struct DrumSet
 {
     DrumSet();
-    int numToms, numCrashs, numFX, numBdPedals;
+    int numToms { 3 };
+    int numCrashs { 2 };
+    int numFX, numBdPedals;
     float ageHeads;
     void makeLoudSounds(float velocity);
     void defineTheRhythm(int bpm);
     void overpowerOtherInstruments(bool hardHitter);
 };
-DrumSet::DrumSet()
-{
-    numToms = 3;
-    numCrashs = 2;
-    numFX = 1;
-    ageHeads = 0.74f;
-    numBdPedals = 2;
-}
+DrumSet::DrumSet() :
+numFX(1),
+numBdPedals(2),
+ageHeads(0.74f)
+{}
 void DrumSet::makeLoudSounds(float velocity)
 {
     if(velocity > 95.8f)
@@ -86,22 +85,25 @@ void DrumSet::overpowerOtherInstruments(bool hardHitter)
     {
         std::cout << "Turn your amp up, dude" << std::endl;
     }
+    std::cout << "I'll hit all my " << numToms << " toms now!" << std::endl;
 }
 
 
 struct CoffeeMachine
 {
     CoffeeMachine();
-    float waterLevel, beansLevel, timeSinceCleaning;
+    float waterLevel { 70.13f };
+    float beansLevel, timeSinceCleaning;
     std::string coffeeBeans;
-    int cupsPerRun;
+    int cupsPerRun { 2 };
 
     struct Coffee
     {
         Coffee();
         bool isEspresso;
         std::string servingSize, intensity;
-        int waterPerServing, temperature;
+        int waterPerServing { 210 };
+        int temperature { 85 };
         void requireBeans(int weightPerServing = 15);  
         void makeAwake(float caffeineConcentration = 7.23458796f);
         void burnTongue(std::string smell = "good", bool tooHot = true);
@@ -111,22 +113,16 @@ struct CoffeeMachine
     void grindBeans(Coffee coffee);
     void selfClean(int numberOfCupsServed);
 };
-CoffeeMachine::CoffeeMachine()
-{
-    waterLevel = 70.13f;
-    coffeeBeans = "Arabica";
-    beansLevel = 30.64f;
-    cupsPerRun = 2;
-    timeSinceCleaning = 33.333f;
-}
-CoffeeMachine::Coffee::Coffee()
-{
-    isEspresso = false;
-    servingSize = "double";
-    intensity = "strong";        
-    waterPerServing = 210;
-    temperature = 85;
-}
+CoffeeMachine::CoffeeMachine() :
+beansLevel(30.64f),
+timeSinceCleaning(33.333f),
+coffeeBeans("Arabica")
+{}
+CoffeeMachine::Coffee::Coffee() :
+isEspresso(false),
+servingSize("double"),
+intensity("strong")
+{}
 void CoffeeMachine::Coffee::requireBeans(int weightPerServing)
 {
     if(weightPerServing == 15)
@@ -155,7 +151,7 @@ void CoffeeMachine::Coffee::burnTongue(std::string smell, bool tooHot)
     {
         if(tooHot)
         {
-            std::cout << "ouch" << std::endl;
+            std::cout << "ouch, that's " << temperature << " degrees hot" << std::endl;
         }
         else
         {
@@ -185,7 +181,7 @@ void CoffeeMachine::selfClean(int numberOfCupsServed)
 {
     if(numberOfCupsServed < 25)
     {
-        std::cout << "not yet" << std::endl;
+        std::cout << "not yet, we only served " << numberOfCupsServed << " cups" << std::endl;
     }
     else
     {
@@ -197,27 +193,25 @@ void CoffeeMachine::selfClean(int numberOfCupsServed)
 struct AppleTree
 {
     AppleTree();
-    float height, age;
+    float height { 2.3f };
+    float age { 23.65f };
     double numBranches, numApples, leaflessness;
     void growApples(int soilQuality = 7, bool sunny = true);
     void provideShade(double leaflessness = 95.5, bool sunny = true);
     void dropApples(int appleRipeness = 75);
 };
-AppleTree::AppleTree()
-{
-    height = 2.3f;
-    age = 23.65f;
-    numBranches = 15.5;
-    numApples = 55.8;
-    leaflessness = 95.5;
-}
+AppleTree::AppleTree() :
+numBranches(15.5),
+numApples(55.8),
+leaflessness(95.5)
+{}
 void AppleTree::growApples(int soilQuality, bool sunny)
 {
     if(sunny)
     {
         if(soilQuality > 5)
         {
-            std::cout << "growing a lot" << std::endl;
+            std::cout << "growing a lot, the soil quality is a " << soilQuality << " out of 10" << std::endl;
         }
         else
         {
@@ -250,20 +244,19 @@ void AppleTree::dropApples(int appleRipeness)
 struct Computer
 {
     Computer();
-    int amountRAM, amountSsdStorage, numCaseFans, numUsbPorts;
+    int amountRAM { 16 };
+    int amountSsdStorage { 1000 };
+    int numCaseFans, numUsbPorts;
     float clockspeedCPU;
     void storeFiles(float fileSize = 3456543);
     void runPrograms(bool asAdmin = false);
     void connectToInternet(bool wifiEnabled = false);
 };
-Computer::Computer()
-{
-    amountRAM = 16;
-    amountSsdStorage = 1000;
-    clockspeedCPU = 3995.7f;
-    numCaseFans = 4;
-    numUsbPorts = 8;
-}
+Computer::Computer() :
+numCaseFans(4),
+numUsbPorts(8),
+clockspeedCPU(3995.7f)
+{}
 void Computer::storeFiles(float fileSize)
 {
     std::cout << "File saved with size: ";
@@ -274,6 +267,7 @@ void Computer::runPrograms(bool asAdmin)
     if(asAdmin)
     {
         std::cout << "running the program as admin" << std::endl;
+        std::cout << "Also running cool due to " << numCaseFans << " case fans" << std::endl;
     }
     else
     {
@@ -295,14 +289,18 @@ void Computer::connectToInternet(bool wifiEnabled)
 struct Dishwasher
 {
     Dishwasher();
-    int capacityPlates, capacityCupsGlasses, capacityCutlery, timePerRun;
+    int capacityPlates { 15 };
+    int capacityCupsGlasses { 18 };
+    int capacityCutlery, timePerRun;
     double waterConsumption;
 
     struct Dishes
     {
         Dishes();
         float oiliness;
-        int soupBowls, regularPlates, cups, glasses;
+        int soupBowls { 4 };
+        int regularPlates { 12 };
+        int cups, glasses;
         void clogDrain(std::string residues = "too much");
         void tarnish(bool isSensitive = false);
         void shatter(bool isPiledBadly = false);
@@ -314,22 +312,16 @@ struct Dishwasher
 
     Dishes dishes;
 };
-Dishwasher::Dishwasher()
-{
-    capacityPlates = 15;
-    capacityCupsGlasses = 18;
-    capacityCutlery = 30;
-    timePerRun = 135;
-    waterConsumption = 30.5;
-}
-Dishwasher::Dishes::Dishes()
-{
-    oiliness = 25.76f;
-    soupBowls = 4;
-    regularPlates = 12;
-    cups = 8;
-    glasses = 5;
-}
+Dishwasher::Dishwasher() :
+capacityCutlery(30),
+timePerRun(135),
+waterConsumption(30.5)
+{}
+Dishwasher::Dishes::Dishes() :
+oiliness(25.76f),
+cups(8),
+glasses(5)
+{}
 void Dishwasher::Dishes::clogDrain(std::string residues)
 {
     if(residues == "too much")
@@ -348,7 +340,7 @@ void Dishwasher::Dishes::shatter(bool isPiledBadly)
 {
     if(isPiledBadly)
     {
-        std::cout << "let's break some stuff" << std::endl;
+        std::cout << "let's break some stuff, e.g. " << cups << " cups" << std::endl;
     }
 }
 void Dishwasher::cleanDishes(Dishwasher::Dishes newDishes)
@@ -356,7 +348,7 @@ void Dishwasher::cleanDishes(Dishwasher::Dishes newDishes)
     if(newDishes.oiliness > 0)
     {
         std::cout << "dishes are dirty, oiliness: " << newDishes.oiliness << std::endl;
-        std::cout << "cleaning dishes..." << std::endl;
+        std::cout << "cleaning dishes, this will take " << timePerRun << " minutes" << std::endl;
         newDishes.oiliness = 0.f;
         dishes.oiliness = newDishes.oiliness;
         dishes.soupBowls = newDishes.soupBowls;
@@ -396,27 +388,25 @@ struct Oven
 {
     Oven();
     int numberBakingSheets, numberPrograms;
-    double highestTemp, currentTemp;
+    double highestTemp { 300.0 };
+    double currentTemp { 220.0 };
     std::string currentProgram;
     void bakeCake(std::string typeOfCake = "apple", int preHeat = 180);
     void bakePizza(std::string typeOfPizza = "margherita", int preHeat = 220);
     void makeRoast(std::string typeOfRoast = "beef", int setTemp = 230);
 };
-Oven::Oven()
-{
-    numberBakingSheets = 3;
-    highestTemp = 300;
-    currentTemp = 220;
-    numberPrograms = 5;
-    currentProgram = "top heat";
-}
+Oven::Oven() :
+numberBakingSheets(3),
+numberPrograms(5),
+currentProgram("top heat")
+{}
 void Oven::bakeCake(std::string typeOfCake, int preHeat)
 {
     std::cout << "baking an " << typeOfCake << " pie, preheating to " << preHeat << std::endl;
 }
 void Oven::bakePizza(std::string typeOfPizza, int preHeat)
 {
-    std::cout << "baking a pizza " << typeOfPizza << ", preheating to " << preHeat << std::endl;
+    std::cout << "baking a pizza " << typeOfPizza << ", preheating to " << preHeat << " although we can try " << highestTemp << " some time" << std::endl;
 }
 void Oven::makeRoast(std::string typeOfRoast, int setTemp)
 {
@@ -427,23 +417,21 @@ struct Stove
 {
     Stove();
     std::string typeStove;
-    int numberHotplates, hotplatesInUse;
+    int numberHotplates { 4 };
+    int hotplatesInUse { 1 };
     double largestDiam, smallestDiam;
     void boilWater(int setLevel = 9);
     void frySteaks(int setLevel = 7);
     void makeSoup(int setLevel = 5);
 };
-Stove::Stove()
-{
-    typeStove = "induction";
-    numberHotplates = 4;
-    largestDiam = 28.5;
-    smallestDiam = 14.5;
-    hotplatesInUse = 1;
-}
+Stove::Stove() :
+    typeStove("induction"),
+    largestDiam(28.5),
+    smallestDiam(14.5)
+{}
 void Stove::boilWater(int setLevel)
 {
-    std::cout << "boiling water, setting level to " << setLevel << std::endl;
+    std::cout << "boiling water, setting level to " << setLevel << " on 1 of " << numberHotplates << " hotplates" << std::endl;
 }
 void Stove::frySteaks(int setLevel)
 {
@@ -457,27 +445,25 @@ void Stove::makeSoup(int setLevel)
 struct Microwave
 {
     Microwave();
-    int numberPrograms, highestWattage, lowestWattage;
+    int numberPrograms { 3 };
+    int highestWattage { 900 };
+    int lowestWattage { 400 };
     double height, diameter;
     void heatLunch(float setTimer = 2.57f);
     void meltButter(float setTimer = 0.875f);
     void makePopcorn(float setTimer = 1.78564f);
 };
-Microwave::Microwave()
-{
-    numberPrograms = 3;
-    highestWattage = 900;
-    lowestWattage = 400;
-    height = 20.5;
-    diameter = 18.5;
-}
+Microwave::Microwave() :
+height(20.5),
+diameter(18.5)
+{}
 void Microwave::heatLunch(float setTimer)
 {
     std::cout << "heating lunch, setting timer to " << setTimer << std::endl;
 }
 void Microwave::meltButter(float setTimer)
 {
-    std::cout << "melting butter, setting timer to " << setTimer << std::endl;
+    std::cout << "melting butter, setting timer to " << setTimer << " and using wattage " << lowestWattage << std::endl;
 }
 void Microwave::makePopcorn(float setTimer)
 {
@@ -487,25 +473,23 @@ void Microwave::makePopcorn(float setTimer)
 struct Fridge
 {
     Fridge();
-    int numTrays;
-    double totalVolume, lowestTemp, currentTemp, currentUtilization;
+    int numTrays { 5 };
+    double totalVolume { 150.6 };
+    double lowestTemp, currentTemp, currentUtilization;
     void keepThingsCold(bool activatedSteadyModule = true);
     void chillDrinks(bool activateQuickCool = true);
     void keepPerishablesFresh(bool regulateHumidity = true);
 };
-Fridge::Fridge()
-{
-    numTrays = 5;
-    totalVolume = 150.6;
-    lowestTemp = 0.1;
-    currentTemp = 0.5;
-    currentUtilization = 35.0;
-}
+Fridge::Fridge() :
+lowestTemp(0.1),
+currentTemp(0.5),
+currentUtilization(35.0)
+{}
 void Fridge::keepThingsCold(bool activatedSteadyModule)
 {
     if(activatedSteadyModule)
     {
-        std::cout << "keeping it cool" << std::endl;
+        std::cout << "keeping it cool, all " << totalVolume << " liters of volume" << std::endl;
     }
 }
 void Fridge::chillDrinks(bool activateQuickCool)
@@ -589,10 +573,12 @@ int main()
 
     AppleTree appletree;
     appletree.dropApples(85);
+    appletree.growApples();
 
     Computer computer;
     computer.storeFiles();
-    std::cout << "there's " << computer.numCaseFans << " fans in the case" << std::endl;
+    //std::cout << "there's " << computer.numCaseFans << " fans in the case" << std::endl;
+    computer.runPrograms(true);
 
     Dishwasher dishwasher;
     dishwasher.dryDishes();
@@ -600,6 +586,8 @@ int main()
     dishwasher.dishes.tarnish(true);
     dishwasher.cleanDishes(dishwasher.dishes);
     dishwasher.cleanDishes(dishwasher.dishes);
+
+    dishwasher.dishes.shatter(true);
 
     Oven oven;
     oven.bakePizza();
@@ -610,6 +598,7 @@ int main()
 
     Microwave microwave;
     microwave.makePopcorn();
+    microwave.meltButter();
 
     Fridge fridge;
     fridge.keepThingsCold();
