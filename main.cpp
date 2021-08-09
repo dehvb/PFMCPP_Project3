@@ -55,7 +55,7 @@ struct Foo
 int main()
 {
     Foo foo;
-    auto bar = foo.scopeLifetimeFunc(3, 1);        //3) 
+    auto bar = foo.scopeLifetimeFunc(3, 3);        //3) 
     
     std::cout << "bar.num: " << bar.num << std::endl;     //4) 
     return 0;
@@ -77,6 +77,22 @@ struct DrumSet
     void makeLoudSounds(float velocity);
     void defineTheRhythm(int bpm);
     void overpowerOtherInstruments(bool hardHitter);
+    int acquireMoreToms(int threshold, int currentNum = 0)
+    {
+        currentNum = numToms;
+        while(currentNum < threshold)
+        {
+            numToms += 1;
+            std::cout << "bought one more tom, now I have " << numToms << std::endl;
+            if(numToms>=threshold)
+            {
+                std::cout << numToms << " is plenty" << std::endl;
+                return numToms;
+            }
+        }
+        return numToms;
+
+    }
 };
 DrumSet::DrumSet() :
 numFX(1),
@@ -124,6 +140,17 @@ struct CoffeeMachine
     float beansLevel, timeSinceCleaning;
     std::string coffeeBeans;
     int cupsPerRun { 2 };
+    float refillReminder(float wtLvl = 100.f, float wtLimit = 15.f)
+    {
+        wtLvl = waterLevel;
+        for( float i = wtLvl; i >= wtLimit; i -= 7.5f)
+        {
+            waterLevel = i;
+        }
+        wtLvl = waterLevel;
+        std::cout << "water level is " << waterLevel << "%, please refill" << std::endl;
+        return wtLvl;
+    }
 
     struct Coffee
     {
@@ -135,6 +162,17 @@ struct CoffeeMachine
         void requireBeans(int weightPerServing = 15);  
         void makeAwake(float caffeineConcentration = 7.23458796f);
         void burnTongue(std::string smell = "good", bool tooHot = true);
+        int heatingUp(int targetTemp = 90, int currentTemp = 20)
+        {
+            while(currentTemp < targetTemp)
+            {
+                std::cout << "heating, current temperature is " << currentTemp << std::endl;
+                currentTemp += targetTemp - currentTemp;
+            }
+            temperature = currentTemp;
+            std::cout << "the temperature is "<< currentTemp << ", that's hot enough" << std::endl;
+            return currentTemp;
+        }
     };
 
     void makeCoffee(Coffee coffee);
@@ -227,6 +265,21 @@ struct AppleTree
     void growApples(int soilQuality = 7, bool sunny = true);
     void provideShade(double leaflessness = 95.5, bool sunny = true);
     void dropApples(int appleRipeness = 75);
+    float aging(float treeAge)
+    {
+        treeAge = age;
+        for(float i = treeAge; i < 66; i ++)
+        {
+            age = i;
+            if(age >= 65.f)
+            {
+                std::cout << "ok imma retire now" << std::endl;
+            }
+        }
+        treeAge = age;
+        std::cout << "The tree is " << age << " years old" << std::endl;
+        return treeAge;
+    }
 };
 AppleTree::AppleTree() :
 numBranches(15.5),
@@ -279,6 +332,20 @@ struct Computer
     void storeFiles(float fileSize = 3456543);
     void runPrograms(bool asAdmin = false);
     void connectToInternet(bool wifiEnabled = false);
+    int useUsb(int numPorts = 4, int numUsed = 0)
+    {
+        numPorts = numUsbPorts;
+        int portsInUse = numUsed;
+        for(int i = portsInUse; i <= numPorts; i++)
+        {
+            portsInUse = i;
+            if(i == numPorts)
+            {
+                std::cout << i << "/" << numPorts << " in use" << std::endl;
+            }
+        }
+        return portsInUse;
+    }
 };
 Computer::Computer() :
 numCaseFans(4),
@@ -332,11 +399,39 @@ struct Dishwasher
         void clogDrain(std::string residues = "too much");
         void tarnish(bool isSensitive = false);
         void shatter(bool isPiledBadly = false);
+        int puttingInGlasses(int toClean = 5, int room = 18)
+        {
+            int spaceLeft = room - glasses - cups;
+            std::cout << "glass(es) to put away: " << toClean << std::endl;
+            while(spaceLeft > 0 && toClean > 0)
+            {
+                //std::cout << toClean << glasses << spaceLeft << std::endl;
+                toClean --;
+                //std::cout << "to clean " << toClean << std::endl;
+                glasses ++;
+                //std::cout << "glasses "  << glasses << std::endl;
+                spaceLeft --;
+                //std::cout << "space left "  << spaceLeft << std::endl;
+            }
+            std::cout << "any glasses left?" << std::endl;
+            toClean == 0 ? std::cout << "all in there" << std::endl : std::cout << "yeah, " << toClean << ", but there's no more room..." << std::endl;
+            return spaceLeft;
+        }
     };
 
     void cleanDishes(Dishes dishes);
     void dryDishes(bool shouldDryDishes = true, int temp = 55);
     void selfClean(int afterRun = 45);
+    int alarm(int time = 100)
+    {
+        time = timePerRun;
+        while(time > 0)
+        {
+            time --;
+            time==0 ? std::cout << std::endl << "beep beep beep" << std::endl : std::cout << "M";
+        }
+        return time;
+    }
 
     Dishes dishes;
 };
@@ -416,12 +511,26 @@ struct Oven
 {
     Oven();
     int numberBakingSheets, numberPrograms;
-    double highestTemp { 300.0 };
-    double currentTemp { 220.0 };
+    int highestTemp { 300 };
+    int currentTemp { 220 };
     std::string currentProgram;
     void bakeCake(std::string typeOfCake = "apple", int preHeat = 180);
     void bakePizza(std::string typeOfPizza = "margherita", int preHeat = 220);
     void makeRoast(std::string typeOfRoast = "beef", int setTemp = 230);
+    int adjustTemp(int targetTemp = 200, int current = 25)
+    {
+        current = currentTemp;
+        std::cout << "current: " << currentTemp << ", target is: " << targetTemp << std::endl;
+        int dir;
+        current<targetTemp ? dir = 1 : dir = -1;
+        while(current > targetTemp)
+        {
+            current += dir;
+            currentTemp = current;
+        }
+        std::cout << "current: " << currentTemp << ", reached target of: " << targetTemp << std::endl;
+        return current;
+    }
 };
 Oven::Oven() :
 numberBakingSheets(3),
@@ -451,6 +560,18 @@ struct Stove
     void boilWater(int setLevel = 9);
     void frySteaks(int setLevel = 7);
     void makeSoup(int setLevel = 5);
+    int cookBigMeal(int numPotsNeeded = 5, int inUse = 0)
+    {
+        hotplatesInUse = inUse;
+        while(hotplatesInUse < numberHotplates && numPotsNeeded > 0)
+        {
+            numPotsNeeded --;
+            hotplatesInUse ++;
+            if(hotplatesInUse == numberHotplates) {std::cout << "no more room" << std::endl;}
+            numPotsNeeded == 0 ? std::cout << "all pots on the stove" << std::endl : std::cout << "still " << numPotsNeeded << " pot(s) more needed" << std::endl;
+        }
+        return numPotsNeeded;
+    }
 };
 Stove::Stove() :
     typeStove("induction"),
@@ -480,6 +601,16 @@ struct Microwave
     void heatLunch(float setTimer = 2.57f);
     void meltButter(float setTimer = 0.875f);
     void makePopcorn(float setTimer = 1.78564f);
+    int raiseWattage(int current = 400, int target = 700)
+    {
+        std::cout << "turning the knob..." << std::endl;
+        while(current < target)
+        {
+            current += 100;
+            std::cout << "click" << std::endl;
+        }
+        return current;
+    }
 };
 Microwave::Microwave() :
 height(20.5),
@@ -507,6 +638,17 @@ struct Fridge
     void keepThingsCold(bool activatedSteadyModule = true);
     void chillDrinks(bool activateQuickCool = true);
     void keepPerishablesFresh(bool regulateHumidity = true);
+    double puttingInHotFood(double current = 0.5, int numItems = 3)
+    {
+        current = currentTemp;
+        for(int i = 0; i < numItems; i++)
+        {
+            current += 0.3;
+            currentTemp = current;
+            if(current > 1.2) {std::cout << "it's getting hot in here" << std::endl;}
+        }
+        return current;
+    }
 };
 Fridge::Fridge() :
 lowestTemp(0.1),
@@ -589,52 +731,75 @@ int main()
 {
     Example::main();
 
+ 
     DrumSet drumset;
     drumset.overpowerOtherInstruments(true);
+    drumset.acquireMoreToms(5);
+    std::cout << "current drumset has " << drumset.numToms << " toms" << std::endl;
 
     CoffeeMachine coffeemachine;
     std::cout << "Is cleaning needed? " << std::endl;
     coffeemachine.selfClean(2);
+    std::cout << coffeemachine.waterLevel << std::endl;
+    coffeemachine.refillReminder();
+    std::cout << coffeemachine.waterLevel << std::endl;
 
     CoffeeMachine::Coffee coffee;
+    coffee.heatingUp();
     coffee.burnTongue();
 
     AppleTree appletree;
     appletree.dropApples(85);
     appletree.growApples();
+    std::cout << appletree.age << std::endl;
+    appletree.aging(appletree.age);
+    std::cout << appletree.age << std::endl;
 
     Computer computer;
     computer.storeFiles();
     //std::cout << "there's " << computer.numCaseFans << " fans in the case" << std::endl;
     computer.runPrograms(true);
+    int inUse = computer.useUsb();
+    std::cout << "Really?" << std::endl;
+    std::cout << "Yes, all " << inUse << std::endl;
 
     Dishwasher dishwasher;
     dishwasher.dryDishes();
+    dishwasher.alarm();
 
     dishwasher.dishes.tarnish(true);
     dishwasher.cleanDishes(dishwasher.dishes);
     dishwasher.cleanDishes(dishwasher.dishes);
 
     dishwasher.dishes.shatter(true);
+    dishwasher.dishes.puttingInGlasses(2,18);
+    dishwasher.dishes.puttingInGlasses(9,18);
 
     Oven oven;
     oven.bakePizza();
     std::cout << "How high does it go? -Up to " << oven.highestTemp << " degrees." << std::endl;
+    oven.adjustTemp();
 
     Stove stove;
     stove.boilWater();
+    stove.cookBigMeal();
 
     Microwave microwave;
     microwave.makePopcorn();
     microwave.meltButter();
+    int current = microwave.raiseWattage();
+    std::cout << "wattage set to " << current << std::endl;
 
     Fridge fridge;
     fridge.keepThingsCold();
     std::cout << "The fridge's current temperature is " << fridge.currentTemp << " degrees." << std::endl;
+    double newTemp = fridge.puttingInHotFood();
+    std::cout << "Now the temperature is " << newTemp << " degrees!" << std::endl;
 
     Kitchen kitchen;
     kitchen.cookMeal();
     kitchen.coolGroceries(true);
+
 
     std::cout << "good to go!" << std::endl;
 }
