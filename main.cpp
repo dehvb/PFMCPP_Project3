@@ -86,7 +86,7 @@ struct DrumSet
         {
             numToms += 1;
             std::cout << "bought one more tom, now I have " << numToms << std::endl;
-            if(numToms>=threshold)
+            if(numToms >= threshold)
             {
                 std::cout << numToms << " is plenty" << std::endl;
                 return numToms;
