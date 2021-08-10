@@ -422,15 +422,22 @@ struct Dishwasher
     void cleanDishes(Dishes dishes);
     void dryDishes(bool shouldDryDishes = true, int temp = 55);
     void selfClean(int afterRun = 45);
-    int alarm(int time = 100)
+    int alarm(int remainingTime = 100)
     {
-        time = timePerRun;
-        while(time > 0)
+        remainingTime = timePerRun;
+        while(remainingTime > 0)
         {
-            time --;
-            time==0 ? std::cout << std::endl << "beep beep beep" << std::endl : std::cout << "M";
+            remainingTime --;
+            if(remainingTime == 0)
+            {
+                std::cout << std::endl << "beep beep beep" << std::endl;
+            }
+            else
+            {
+                std::cout << "M";
+            }
         }
-        return time;
+        return remainingTime;
     }
 
     Dishes dishes;
@@ -521,8 +528,7 @@ struct Oven
     {
         current = currentTemp;
         std::cout << "current: " << currentTemp << ", target is: " << targetTemp << std::endl;
-        int dir;
-        current<targetTemp ? dir = 1 : dir = -1;
+        int dir = (current < targetTemp ? 1 : -1);
         while(current > targetTemp)
         {
             current += dir;
@@ -565,8 +571,8 @@ struct Stove
         hotplatesInUse = inUse;
         while(hotplatesInUse < numberHotplates && numPotsNeeded > 0)
         {
-            numPotsNeeded --;
-            hotplatesInUse ++;
+            --numPotsNeeded;
+            ++hotplatesInUse;
             if(hotplatesInUse == numberHotplates) {std::cout << "no more room" << std::endl;}
             numPotsNeeded == 0 ? std::cout << "all pots on the stove" << std::endl : std::cout << "still " << numPotsNeeded << " pot(s) more needed" << std::endl;
         }
