@@ -458,7 +458,7 @@ struct Dishwasher
         remainingTime = timePerRun;
         while(remainingTime > 0)
         {
-            remainingTime --;
+            -- remainingTime;
             if(remainingTime == 0)
             {
                 std::cout << std::endl << "beep beep beep" << std::endl;
