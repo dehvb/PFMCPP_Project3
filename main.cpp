@@ -287,7 +287,7 @@ struct AppleTree
     float aging(float treeAge)
     {
         treeAge = age;
-        for(float i = treeAge; i < 66; ++ i)
+        for(float i = treeAge; i < 66; ++i)
         {
             age = i;
             if(age >= 65.f)
@@ -361,7 +361,7 @@ struct Computer
     {
         numPorts = numUsbPorts;
         int portsInUse = numUsed;
-        for(int i = portsInUse; i <= numPorts; ++ i)
+        for(int i = portsInUse; i <= numPorts; ++i)
         {
             portsInUse = i;
             if(i == numPorts)
@@ -436,11 +436,11 @@ struct Dishwasher
             while(spaceLeft > 0 && toClean > 0)
             {
                 //std::cout << toClean << glasses << spaceLeft << std::endl;
-                -- toClean;
+                --toClean;
                 //std::cout << "to clean " << toClean << std::endl;
-                ++ glasses;
+                ++glasses;
                 //std::cout << "glasses "  << glasses << std::endl;
-                -- spaceLeft;
+                --spaceLeft;
                 //std::cout << "space left "  << spaceLeft << std::endl;
             }
             std::cout << "any glasses left?" << std::endl;
@@ -458,7 +458,7 @@ struct Dishwasher
         remainingTime = timePerRun;
         while(remainingTime > 0)
         {
-            -- remainingTime;
+            --remainingTime;
             if(remainingTime == 0)
             {
                 std::cout << std::endl << "beep beep beep" << std::endl;
@@ -618,8 +618,8 @@ struct Stove
         hotplatesInUse = inUse;
         while(hotplatesInUse < numberHotplates && numPotsNeeded > 0)
         {
-            -- numPotsNeeded;
-            ++ hotplatesInUse;
+            --numPotsNeeded;
+            ++hotplatesInUse;
             if(hotplatesInUse == numberHotplates) 
             {
                 std::cout << "no more room" << std::endl;
@@ -713,7 +713,7 @@ struct Fridge
     double puttingInHotFood(double current = 0.5, int numItems = 3)
     {
         current = currentTemp;
-        for(int i = 0; i < numItems; ++ i)
+        for(int i = 0; i < numItems; ++i)
         {
             current += 0.3;
             currentTemp = current;
